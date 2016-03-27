@@ -23,77 +23,7 @@
 
 <div id="content"></div>
 
-<script type="text/babel">
-
-
-class App extends React.Component{
-  constructor(props) {
-    super(props)
-    let ppl = [
-        {name: "Zachary", isSelected:true}
-      , {name: "Jacob",   isSelected:true}
-      , {name: "Vienna",  isSelected:true}
-      , {name: "Jupiter", isSelected:true}
-    ]
-    this.state={ppl:ppl}
-  }
-
-  
-  onCheck (name) {
-    this.setState({ppl:
-      _.clone(this.state.ppl.map(
-        (e) => {
-          if (e.name === name)
-            e.isSelected=!e.isSelected
-          return e
-        }))
-    })
-  }
-  
-  render() {
-    return (
-      <div>
-      <ul>
-      
-      {this.state.ppl.map(
-        (e) => { return <Person name={e.name} isSelected={e.isSelected}
-          onCheck={(name) => this.onCheck(name)}/> }) }
-      </ul>
-      
-      <input type="button" value="HUG!" 
-        onClick={ () => {console.log("HUGZZZZ")} } />
-      
-      </div>
-    )
-  }
-}
-
-
-class Person extends React.Component{
-  constructor (props ) {
-    super(props )
-    // this.state = {isSelected: false}
-  }
-
-  render () {
-    return (
-      <li style={ {backgroundColor: this.props.isSelected ? "red" : "transparent"} }>
-      <input type="checkbox" checked={this.props.isSelected}
-      onChange={ () => { this.props.onCheck (this.props.name)}  }/>
-
-      {this.props.name}
-
-      </li>)
-  }
-  
-}
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('content')
-);
-
-</script>
+<script type="text/babel" src="main.js"></script>
   </body>
 </html>
 
