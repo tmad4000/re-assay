@@ -1,0 +1,80 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>React Tutorial</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+  <style>
+  li {
+    list-style-type: none;
+  }
+</style>
+    </head>
+    <body>
+        <div id="content"></div>
+        <script type="text/babel">
+  class App extends React.Component{
+    constructor (props ) {
+      super(props )
+      
+    }
+
+    render () {
+      return (
+          <div>
+          <ul>
+
+<Person name="Zachary" />
+          <Person name="Jacob" />
+          <Person name="Vienna" />
+          <Person name="Jupiter" />
+          
+          </ul>
+          
+          <input type="button" value="HUG!" 
+            onClick={ () => {
+            console.log("HUGZZZZ")}
+                    } />
+
+          
+</div>
+
+          
+)
+
+    }
+  }
+
+
+  class Person extends React.Component{
+    constructor (props ) {
+      super(props )
+      this.state = {isSelected: false}
+    }
+
+    render () {
+      return (
+          <li style={ {backgroundColor: this.state.isSelected ? ")red" : "transparent"} }>
+            <input type="checkbox" checked={this.state.isSelected}
+          onChange={ () => {this.setState({isSelected: !this.state.isSelected})}  }/>
+
+          {this.props.name}
+
+          </li>)
+    }
+    
+         }
+
+         ReactDOM.render(
+             <App />,
+           document.getElementById('content')
+         );
+         
+        </script>
+    </body>
+</html>
