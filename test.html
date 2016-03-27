@@ -3,104 +3,105 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>React Tutorial</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <title>The Hugatron</title>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 
-    <style>
-      li {
-      list-style-type: none;
-      }
-    </style>
-  </head>
+      <style>
+       li {
+         list-style-type: none;
+       }
+      </style>
+   </head>
   <body>
-    <div id="content"></div>
-    <script type="text/babel">
-      class App extends React.Component{
-        constructor(props) {
-          super(props)
-      let ppl = [
-        {name:"Zachary", isSelected:true},
-        {name:"Jacob", isSelected:true},
-        {name:"Vienna", isSelected:true},
-        {name:"Jupiter", isSelected:true} ]
-      this.state={ppl:ppl}
-      }
 
-      
-      onCheck (name) {
-      this.setState({ppl:
+<h1>The Hugatron</h1>
+
+<div id="content"></div>
+
+<script type="text/babel">
+
+
+class App extends React.Component{
+  constructor(props) {
+    super(props)
+    let ppl = [
+        {name: "Zachary", isSelected:true}
+      , {name: "Jacob",   isSelected:true}
+      , {name: "Vienna",  isSelected:true}
+      , {name: "Jupiter", isSelected:true}
+    ]
+    this.state={ppl:ppl}
+  }
+
+  
+  onCheck (name) {
+    this.setState({ppl:
       _.clone(this.state.ppl.map(
-      (e) => {
-      if (e.name === name)
-          e.isSelected=!e.isSelected
-      return e
-      }))
-      
-      })
-
-      }
-
-
-      
-render() {
-      
-            
-
-      return (
+        (e) => {
+          if (e.name === name)
+            e.isSelected=!e.isSelected
+          return e
+        }))
+    })
+  }
+  
+  render() {
+    return (
       <div>
-        <ul>
-
-          
-          {this.state.ppl.map(
-          (e) => { return <Person name={e.name} isSelected={e.isSelected}
-                                  onCheck={(name) => this.onCheck(name)}/> }) }
-
-        </ul>
-        
-        <input type="button" value="HUG!" 
-               onClick={ () => {
-        console.log("HUGZZZZ")}
-        } />
-
-        
-      </div>
-
+      <ul>
       
-      )
+      {this.state.ppl.map(
+        (e) => { return <Person name={e.name} isSelected={e.isSelected}
+          onCheck={(name) => this.onCheck(name)}/> }) }
+      </ul>
+      
+      <input type="button" value="HUG!" 
+        onClick={ () => {console.log("HUGZZZZ")} } />
+      
+      </div>
+    )
+  }
+}
 
-      }
-      }
 
+class Person extends React.Component{
+  constructor (props ) {
+    super(props )
+    // this.state = {isSelected: false}
+  }
 
-      class Person extends React.Component{
-      constructor (props ) {
-      super(props )
-      // this.state = {isSelected: false}
-      }
-
-      render () {
-      return (
+  render () {
+    return (
       <li style={ {backgroundColor: this.props.isSelected ? "red" : "transparent"} }>
-        <input type="checkbox" checked={this.props.isSelected}
-               onChange={ () => { this.props.onCheck (this.props.name)}  }/>
+      <input type="checkbox" checked={this.props.isSelected}
+      onChange={ () => { this.props.onCheck (this.props.name)}  }/>
 
-        {this.props.name}
+      {this.props.name}
 
       </li>)
-      }
-      
-      }
+  }
+  
+}
 
-      ReactDOM.render(
-      <App />,
-      document.getElementById('content')
-      );
-      
-    </script>
+ReactDOM.render(
+  <App />,
+  document.getElementById('content')
+);
+
+</script>
   </body>
 </html>
+
+
+
+<!-- 
+TODO:
+  [_]  Add prop "Hugged" to each Person
+[_]  When Person is selected, it "hugs" them
+[_]  Refactor to use keys 
+-->
